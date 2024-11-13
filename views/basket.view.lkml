@@ -20,6 +20,7 @@ view: basket {
     type: number
   }
   dimension: order_id {
+    primary_key: yes
     description: "Order number associated with the item"
     value_format: "00000"
     type: number
