@@ -32,5 +32,6 @@ view: basket {
   measure: avg_basket_size {
     type: average
     sql: ${total_sale_price} ;;
+    value_format_name: usd
   }
 }
