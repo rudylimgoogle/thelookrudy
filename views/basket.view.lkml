@@ -29,4 +29,8 @@ view: basket {
     description: "Number of order items"
     type: number
   }
+  measure: avg_basket_size {
+    type: average
+    sql: ${total_sale_price} ;;
+  }
 }
