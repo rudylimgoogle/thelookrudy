@@ -315,6 +315,7 @@ view: order_items {
     value_format_name: usd
     sql: ${sale_price} ;;
     drill_fields: [detail*]
+    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.00,\"K\";$0.00"
   }
 
   measure: total_gross_margin {
