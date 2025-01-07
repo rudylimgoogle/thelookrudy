@@ -280,6 +280,7 @@ view: order_items {
     type: number
     value_format_name: usd
     sql: ${TABLE}.sale_price;;
+    value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.00,\"K\";$0.00"
   }
 
   dimension: gross_margin {
