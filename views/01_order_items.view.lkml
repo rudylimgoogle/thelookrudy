@@ -3,6 +3,53 @@ view: order_items {
   view_label: "Order Items"
   ########## IDs, Foreign Keys, Counts ###########
 
+# rudy-custom
+
+  # date filter
+  filter: select_time_period{
+    group_label: "PoP example"
+    type: date
+  }
+
+
+  dimension: select_time_period_start_date {
+    type: date
+    sql: {% date_start select_time_period %};;
+  }
+  dimension: select_time_period_end_date {
+    type: date
+    sql: DATE_SUB({% date_end select_time_period %}, INTERVAL 1 DAY) ;;
+      # DATE_SUB to exclude today (only include complete days)
+  }
+
+  # create time period identifiers
+  dimension: length{
+    type: number
+    hidden: yes
+    sql:DATE_DIFF({% date_end select_time_period %},{% date_start select_time_period %},DAY) ;;
+  }
+
+  dimension: time_period_comparison {
+    type: string
+    description: "Pivot this field to see comparison of selected time period vs previous periods"
+    sql:
+    CASE
+    WHEN ${created_date} BETWEEN ${select_time_period_start_date} and ${select_time_period_end_date} THEN "Selected Period"
+    WHEN ${created_date} BETWEEN DATE_SUB(${select_time_period_start_date}, INTERVAL ${length} DAY) AND DATE_SUB(${select_time_period_end_date}, INTERVAL ${length} DAY) THEN "Previous Period"
+    WHEN ${created_date} BETWEEN DATE_SUB(${select_time_period_start_date}, INTERVAL ${length}*2 DAY) AND DATE_SUB(${select_time_period_end_date}, INTERVAL ${length}*2 DAY) THEN "Previous 2 Period"
+    WHEN ${created_date} BETWEEN DATE_SUB(${select_time_period_start_date}, INTERVAL ${length}*3 DAY) AND DATE_SUB(${select_time_period_end_date}, INTERVAL ${length}*3 DAY) THEN "Previous 3 Period"
+    END
+    ;;
+  }
+
+
+# rudy-custom-end
+
+
+
+  filter: param {
+    type: string
+  }
   dimension: id {
     label: "ID"
     description: "Unique identifier for each order item (5 digits)"
@@ -317,6 +364,15 @@ view: order_items {
     drill_fields: [detail*]
     value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.00,\"K\";$0.00"
   }
+
+
+
+  measure: total_sale_price_dynamic {
+    type: number
+    sql: ${total_sale_price} ;;
+    filters: [created_date: "last week"]
+  }
+
 
   measure: total_gross_margin {
     label: "Total Gross Margin"
