@@ -13,10 +13,12 @@ view: order_items {
 
 
   dimension: select_time_period_start_date {
+    group_label: "PoP example"
     type: date
     sql: {% date_start select_time_period %};;
   }
   dimension: select_time_period_end_date {
+    group_label: "PoP example"
     type: date
     sql: DATE_SUB({% date_end select_time_period %}, INTERVAL 1 DAY) ;;
       # DATE_SUB to exclude today (only include complete days)
@@ -30,6 +32,7 @@ view: order_items {
   }
 
   dimension: time_period_comparison {
+    group_label: "PoP example"
     type: string
     description: "Pivot this field to see comparison of selected time period vs previous periods"
     sql:
