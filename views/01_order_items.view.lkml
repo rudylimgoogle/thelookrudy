@@ -7,7 +7,6 @@ view: order_items {
 
   # date filter
   filter: select_time_period{
-    group_label: "PoP example"
     type: date
   }
 
