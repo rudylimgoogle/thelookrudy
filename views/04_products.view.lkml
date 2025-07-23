@@ -23,7 +23,7 @@ view: products {
     action: {
       label: "Email Brand Promotion to Cohort"
       url: "https://desolate-refuge-53336.herokuapp.com/posts"
-      icon_url: "https://sendgrid.com/favicon.ico"
+      icon_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4nd82eFk5SaBPRIeCpmwL7A4YSokA-kXSmw&s"
       param: {
         name: "some_auth_code"
         value: "abc123456"
@@ -40,7 +40,7 @@ view: products {
         default:
         "Dear Valued Customer,
 
-        We appreciate your continue support and loyalty and wanted to show our appreciation. Offering a 15% discount on ALL products for our favorite brand {{ value }}.
+        We appreciate your continue support and loyalty and wanted to show our appreciation. Offering a 15% discount on ALL products for our favorite item {{ value }}.
         Just used code {{ value | upcase }}-MANIA on your next checkout!
 
         Your friends at the Look"
@@ -114,7 +114,7 @@ view: products {
     action: {
       label: "Email Brand Promotion to Cohort"
       url: "https://desolate-refuge-53336.herokuapp.com/posts"
-      icon_url: "https://sendgrid.com/favicon.ico"
+      icon_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4nd82eFk5SaBPRIeCpmwL7A4YSokA-kXSmw&s"
       param: {
         name: "some_auth_code"
         value: "abc123456"
