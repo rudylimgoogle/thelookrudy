@@ -441,7 +441,7 @@ view: order_items {
 
   measure: returned_count {
     label: "Returned Count"
-    description: "Number of items returned"
+    description: "Number of items returned. Use as default for returns analysis"
     type: count_distinct
     sql: ${id} ;;
     filters: {
